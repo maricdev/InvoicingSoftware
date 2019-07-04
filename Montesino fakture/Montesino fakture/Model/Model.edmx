@@ -1,0 +1,1719 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MONTESINOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Artikal">
+          <Key>
+            <PropertyRef Name="Artikal_ID" />
+          </Key>
+          <Property Name="Artikal_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Aktivan" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Vrsta" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Sifra" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Opis" Type="varchar(max)" />
+          <Property Name="Cena" Type="money" Nullable="false" />
+          <Property Name="JM_ID" Type="int" Nullable="false" />
+          <Property Name="PS_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Drzava">
+          <Key>
+            <PropertyRef Name="Drzava_ID" />
+          </Key>
+          <Property Name="Drzava_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JM">
+          <Key>
+            <PropertyRef Name="JM_ID" />
+          </Key>
+          <Property Name="JM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kod" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="NP">
+          <Key>
+            <PropertyRef Name="NP_ID" />
+          </Key>
+          <Property Name="NP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nacin" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OdgovorneOsobe">
+          <Key>
+            <PropertyRef Name="OdgovorneOsobe_ID" />
+          </Key>
+          <Property Name="OdgovorneOsobe_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Podesavanje">
+          <Key>
+            <PropertyRef Name="Podesavanje_ID" />
+          </Key>
+          <Property Name="Podesavanje_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subjekat_ID" Type="int" Nullable="false" />
+          <Property Name="OdgovorneOsobe_ID" Type="int" Nullable="false" />
+          <Property Name="Valuta_ID" Type="int" Nullable="false" />
+          <Property Name="NP_ID" Type="int" Nullable="false" />
+          <Property Name="RokVazenja" Type="smallint" Nullable="false" />
+          <Property Name="StatusPredracun_ID" Type="int" Nullable="false" />
+          <Property Name="StatusRacun_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Porez">
+          <Key>
+            <PropertyRef Name="PS_ID" />
+          </Key>
+          <Property Name="PS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kod" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="255" />
+          <Property Name="Vrednost" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Posta">
+          <Key>
+            <PropertyRef Name="Posta_ID" />
+          </Key>
+          <Property Name="Posta_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Broj" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="255" />
+          <Property Name="Drzava_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Predracun">
+          <Key>
+            <PropertyRef Name="Predracun_ID" />
+          </Key>
+          <Property Name="Predracun_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ponuda_ID" Type="int" />
+          <Property Name="Broj" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="Datum" Type="datetime" Nullable="false" />
+          <Property Name="RokIsporuke" Type="datetime" Nullable="false" />
+          <Property Name="Subjekat_ID" Type="int" Nullable="false" />
+          <Property Name="Primalac_ID" Type="int" Nullable="false" />
+          <Property Name="RokVazenja" Type="smallint" Nullable="false" />
+          <Property Name="NP_ID" Type="int" />
+          <Property Name="Status_ID" Type="int" />
+          <Property Name="Valuta_ID" Type="int" />
+          <Property Name="OdgovorneOsobe_ID" Type="int" />
+          <Property Name="Posta_ID" Type="int" />
+          <Property Name="Napomena" Type="varchar(max)" />
+          <Property Name="Ukupno" Type="money" />
+          <Property Name="PopustBroj" Type="money" />
+          <Property Name="PopustProcenat" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="Vrednost" Type="money" />
+          <Property Name="PDV" Type="money" />
+          <Property Name="ZaPlacanje" Type="money" />
+        </EntityType>
+        <EntityType Name="PredracunStavke">
+          <Key>
+            <PropertyRef Name="PredracunStavke_ID" />
+          </Key>
+          <Property Name="PredracunStavke_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Predracun_ID" Type="int" Nullable="false" />
+          <Property Name="Pozicija" Type="smallint" Nullable="false" />
+          <Property Name="Napomena" Type="varchar(max)" />
+          <Property Name="Artikal_ID" Type="int" Nullable="false" />
+          <Property Name="Sifra" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Opis" Type="varchar(max)" />
+          <Property Name="JM_ID" Type="int" Nullable="false" />
+          <Property Name="Kolicina" Type="decimal" Precision="11" Scale="4" Nullable="false" />
+          <Property Name="Cena" Type="money" Nullable="false" />
+          <Property Name="Rabat" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Vrednost" Type="money" Nullable="false" />
+          <Property Name="PS_ID" Type="int" Nullable="false" />
+          <Property Name="CenaPDV" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Promet">
+          <Key>
+            <PropertyRef Name="Promet_ID" />
+          </Key>
+          <Property Name="Promet_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Predracun_ID" Type="int" />
+          <Property Name="VrstaDokumenta" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Broj" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Otpremnica" Type="datetime" Nullable="false" />
+          <Property Name="Racun" Type="datetime" Nullable="false" />
+          <Property Name="PDVDate" Type="datetime" Nullable="false" />
+          <Property Name="Subjekat_ID" Type="int" Nullable="false" />
+          <Property Name="Primalac_ID" Type="int" Nullable="false" />
+          <Property Name="RokVazenja" Type="smallint" Nullable="false" />
+          <Property Name="Dospece" Type="datetime" Nullable="false" />
+          <Property Name="NP_ID" Type="int" />
+          <Property Name="Status_ID" Type="int" />
+          <Property Name="Valuta_ID" Type="int" />
+          <Property Name="OdgovorneOsobe_ID" Type="int" />
+          <Property Name="Posta_ID" Type="int" />
+          <Property Name="Napomena" Type="varchar(max)" />
+          <Property Name="Ukupno" Type="money" />
+          <Property Name="PopustBroj" Type="money" />
+          <Property Name="PopustProcenat" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="Vrednost" Type="money" />
+          <Property Name="PDV" Type="money" />
+          <Property Name="ZaPlacanje" Type="money" />
+        </EntityType>
+        <EntityType Name="PrometStavke">
+          <Key>
+            <PropertyRef Name="PrometStavke_ID" />
+          </Key>
+          <Property Name="PrometStavke_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Promet_ID" Type="int" Nullable="false" />
+          <Property Name="Pozicija" Type="smallint" Nullable="false" />
+          <Property Name="Napomena" Type="varchar(max)" />
+          <Property Name="Artikal_ID" Type="int" Nullable="false" />
+          <Property Name="Sifra" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Opis" Type="varchar(max)" />
+          <Property Name="JM_ID" Type="int" Nullable="false" />
+          <Property Name="Kolicina" Type="decimal" Precision="11" Scale="4" Nullable="false" />
+          <Property Name="Cena" Type="money" Nullable="false" />
+          <Property Name="Rabat" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Vrednost" Type="money" Nullable="false" />
+          <Property Name="PS_ID" Type="int" Nullable="false" />
+          <Property Name="CenaPDV" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Status_ID" />
+          </Key>
+          <Property Name="Status_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="jePredracun" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="jeRacun" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subjekat">
+          <Key>
+            <PropertyRef Name="Subjekat_ID" />
+          </Key>
+          <Property Name="Subjekat_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Naziv2" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="jeKupac" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="jeDobavljac" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="OIB" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="Adresa" Type="varchar" MaxLength="60" />
+          <Property Name="Posta_ID" Type="int" Nullable="false" />
+          <Property Name="Telefon" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Drzava_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Valuta">
+          <Key>
+            <PropertyRef Name="Valuta_ID" />
+          </Key>
+          <Property Name="Valuta_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Oznaka" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Naziv" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Artikal_JM">
+          <End Role="JM" Type="Self.JM" Multiplicity="1" />
+          <End Role="Artikal" Type="Self.Artikal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JM">
+              <PropertyRef Name="JM_ID" />
+            </Principal>
+            <Dependent Role="Artikal">
+              <PropertyRef Name="JM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Artikal_Porez">
+          <End Role="Porez" Type="Self.Porez" Multiplicity="1" />
+          <End Role="Artikal" Type="Self.Artikal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Porez">
+              <PropertyRef Name="PS_ID" />
+            </Principal>
+            <Dependent Role="Artikal">
+              <PropertyRef Name="PS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Podesavanje_OdgovorneOsobe">
+          <End Role="OdgovorneOsobe" Type="Self.OdgovorneOsobe" Multiplicity="1" />
+          <End Role="Podesavanje" Type="Self.Podesavanje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdgovorneOsobe">
+              <PropertyRef Name="OdgovorneOsobe_ID" />
+            </Principal>
+            <Dependent Role="Podesavanje">
+              <PropertyRef Name="OdgovorneOsobe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Podesavanje_Subjekat">
+          <End Role="Subjekat" Type="Self.Subjekat" Multiplicity="1" />
+          <End Role="Podesavanje" Type="Self.Podesavanje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjekat">
+              <PropertyRef Name="Subjekat_ID" />
+            </Principal>
+            <Dependent Role="Podesavanje">
+              <PropertyRef Name="Subjekat_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Podesavanje_Valuta">
+          <End Role="Valuta" Type="Self.Valuta" Multiplicity="1" />
+          <End Role="Podesavanje" Type="Self.Podesavanje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Valuta">
+              <PropertyRef Name="Valuta_ID" />
+            </Principal>
+            <Dependent Role="Podesavanje">
+              <PropertyRef Name="Valuta_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posta_Drzava">
+          <End Role="Drzava" Type="Self.Drzava" Multiplicity="1" />
+          <End Role="Posta" Type="Self.Posta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drzava">
+              <PropertyRef Name="Drzava_ID" />
+            </Principal>
+            <Dependent Role="Posta">
+              <PropertyRef Name="Drzava_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Predracun_NP">
+          <End Role="NP" Type="Self.NP" Multiplicity="0..1" />
+          <End Role="Predracun" Type="Self.Predracun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NP">
+              <PropertyRef Name="NP_ID" />
+            </Principal>
+            <Dependent Role="Predracun">
+              <PropertyRef Name="NP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Predracun_OdgovorneOsobe">
+          <End Role="OdgovorneOsobe" Type="Self.OdgovorneOsobe" Multiplicity="0..1" />
+          <End Role="Predracun" Type="Self.Predracun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdgovorneOsobe">
+              <PropertyRef Name="OdgovorneOsobe_ID" />
+            </Principal>
+            <Dependent Role="Predracun">
+              <PropertyRef Name="OdgovorneOsobe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Predracun_Posta">
+          <End Role="Posta" Type="Self.Posta" Multiplicity="0..1" />
+          <End Role="Predracun" Type="Self.Predracun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posta">
+              <PropertyRef Name="Posta_ID" />
+            </Principal>
+            <Dependent Role="Predracun">
+              <PropertyRef Name="Posta_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Predracun_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Predracun" Type="Self.Predracun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Status_ID" />
+            </Principal>
+            <Dependent Role="Predracun">
+              <PropertyRef Name="Status_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Predracun_Subjekat">
+          <End Role="Subjekat" Type="Self.Subjekat" Multiplicity="1" />
+          <End Role="Predracun" Type="Self.Predracun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjekat">
+              <PropertyRef Name="Subjekat_ID" />
+            </Principal>
+            <Dependent Role="Predracun">
+              <PropertyRef Name="Subjekat_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Predracun_Subjekat1">
+          <End Role="Subjekat" Type="Self.Subjekat" Multiplicity="1" />
+          <End Role="Predracun" Type="Self.Predracun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjekat">
+              <PropertyRef Name="Subjekat_ID" />
+            </Principal>
+            <Dependent Role="Predracun">
+              <PropertyRef Name="Primalac_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Predracun_Valuta">
+          <End Role="Valuta" Type="Self.Valuta" Multiplicity="0..1" />
+          <End Role="Predracun" Type="Self.Predracun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Valuta">
+              <PropertyRef Name="Valuta_ID" />
+            </Principal>
+            <Dependent Role="Predracun">
+              <PropertyRef Name="Valuta_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PredracunStavke_Artikal">
+          <End Role="Artikal" Type="Self.Artikal" Multiplicity="1" />
+          <End Role="PredracunStavke" Type="Self.PredracunStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artikal">
+              <PropertyRef Name="Artikal_ID" />
+            </Principal>
+            <Dependent Role="PredracunStavke">
+              <PropertyRef Name="Artikal_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PredracunStavke_JM">
+          <End Role="JM" Type="Self.JM" Multiplicity="1" />
+          <End Role="PredracunStavke" Type="Self.PredracunStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JM">
+              <PropertyRef Name="JM_ID" />
+            </Principal>
+            <Dependent Role="PredracunStavke">
+              <PropertyRef Name="JM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PredracunStavke_Porez">
+          <End Role="Porez" Type="Self.Porez" Multiplicity="1" />
+          <End Role="PredracunStavke" Type="Self.PredracunStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Porez">
+              <PropertyRef Name="PS_ID" />
+            </Principal>
+            <Dependent Role="PredracunStavke">
+              <PropertyRef Name="PS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PredracunStavke_Predracun">
+          <End Role="Predracun" Type="Self.Predracun" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PredracunStavke" Type="Self.PredracunStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Predracun">
+              <PropertyRef Name="Predracun_ID" />
+            </Principal>
+            <Dependent Role="PredracunStavke">
+              <PropertyRef Name="Predracun_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promet_NP">
+          <End Role="NP" Type="Self.NP" Multiplicity="0..1" />
+          <End Role="Promet" Type="Self.Promet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NP">
+              <PropertyRef Name="NP_ID" />
+            </Principal>
+            <Dependent Role="Promet">
+              <PropertyRef Name="NP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promet_OdgovorneOsobe">
+          <End Role="OdgovorneOsobe" Type="Self.OdgovorneOsobe" Multiplicity="0..1" />
+          <End Role="Promet" Type="Self.Promet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdgovorneOsobe">
+              <PropertyRef Name="OdgovorneOsobe_ID" />
+            </Principal>
+            <Dependent Role="Promet">
+              <PropertyRef Name="OdgovorneOsobe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promet_Posta">
+          <End Role="Posta" Type="Self.Posta" Multiplicity="0..1" />
+          <End Role="Promet" Type="Self.Promet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posta">
+              <PropertyRef Name="Posta_ID" />
+            </Principal>
+            <Dependent Role="Promet">
+              <PropertyRef Name="Posta_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promet_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Promet" Type="Self.Promet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Status_ID" />
+            </Principal>
+            <Dependent Role="Promet">
+              <PropertyRef Name="Status_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promet_Subjekat">
+          <End Role="Subjekat" Type="Self.Subjekat" Multiplicity="1" />
+          <End Role="Promet" Type="Self.Promet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjekat">
+              <PropertyRef Name="Subjekat_ID" />
+            </Principal>
+            <Dependent Role="Promet">
+              <PropertyRef Name="Subjekat_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promet_Subjekat1">
+          <End Role="Subjekat" Type="Self.Subjekat" Multiplicity="1" />
+          <End Role="Promet" Type="Self.Promet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjekat">
+              <PropertyRef Name="Subjekat_ID" />
+            </Principal>
+            <Dependent Role="Promet">
+              <PropertyRef Name="Primalac_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promet_Valuta">
+          <End Role="Valuta" Type="Self.Valuta" Multiplicity="0..1" />
+          <End Role="Promet" Type="Self.Promet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Valuta">
+              <PropertyRef Name="Valuta_ID" />
+            </Principal>
+            <Dependent Role="Promet">
+              <PropertyRef Name="Valuta_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrometStavke_Artikal">
+          <End Role="Artikal" Type="Self.Artikal" Multiplicity="1" />
+          <End Role="PrometStavke" Type="Self.PrometStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artikal">
+              <PropertyRef Name="Artikal_ID" />
+            </Principal>
+            <Dependent Role="PrometStavke">
+              <PropertyRef Name="Artikal_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrometStavke_JM">
+          <End Role="JM" Type="Self.JM" Multiplicity="1" />
+          <End Role="PrometStavke" Type="Self.PrometStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JM">
+              <PropertyRef Name="JM_ID" />
+            </Principal>
+            <Dependent Role="PrometStavke">
+              <PropertyRef Name="JM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrometStavke_Porez">
+          <End Role="Porez" Type="Self.Porez" Multiplicity="1" />
+          <End Role="PrometStavke" Type="Self.PrometStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Porez">
+              <PropertyRef Name="PS_ID" />
+            </Principal>
+            <Dependent Role="PrometStavke">
+              <PropertyRef Name="PS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrometStavke_Promet">
+          <End Role="Promet" Type="Self.Promet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PrometStavke" Type="Self.PrometStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promet">
+              <PropertyRef Name="Promet_ID" />
+            </Principal>
+            <Dependent Role="PrometStavke">
+              <PropertyRef Name="Promet_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subjekat_Drzava">
+          <End Role="Drzava" Type="Self.Drzava" Multiplicity="1" />
+          <End Role="Subjekat" Type="Self.Subjekat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drzava">
+              <PropertyRef Name="Drzava_ID" />
+            </Principal>
+            <Dependent Role="Subjekat">
+              <PropertyRef Name="Drzava_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subjekat_PB">
+          <End Role="Posta" Type="Self.Posta" Multiplicity="1" />
+          <End Role="Subjekat" Type="Self.Subjekat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posta">
+              <PropertyRef Name="Posta_ID" />
+            </Principal>
+            <Dependent Role="Subjekat">
+              <PropertyRef Name="Posta_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MONTESINOModelStoreContainer">
+          <EntitySet Name="Artikal" EntityType="Self.Artikal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Drzava" EntityType="Self.Drzava" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JM" EntityType="Self.JM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NP" EntityType="Self.NP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OdgovorneOsobe" EntityType="Self.OdgovorneOsobe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Podesavanje" EntityType="Self.Podesavanje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Porez" EntityType="Self.Porez" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posta" EntityType="Self.Posta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Predracun" EntityType="Self.Predracun" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PredracunStavke" EntityType="Self.PredracunStavke" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Promet" EntityType="Self.Promet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrometStavke" EntityType="Self.PrometStavke" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subjekat" EntityType="Self.Subjekat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Valuta" EntityType="Self.Valuta" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Artikal_JM" Association="Self.FK_Artikal_JM">
+            <End Role="JM" EntitySet="JM" />
+            <End Role="Artikal" EntitySet="Artikal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Artikal_Porez" Association="Self.FK_Artikal_Porez">
+            <End Role="Porez" EntitySet="Porez" />
+            <End Role="Artikal" EntitySet="Artikal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Podesavanje_OdgovorneOsobe" Association="Self.FK_Podesavanje_OdgovorneOsobe">
+            <End Role="OdgovorneOsobe" EntitySet="OdgovorneOsobe" />
+            <End Role="Podesavanje" EntitySet="Podesavanje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Podesavanje_Subjekat" Association="Self.FK_Podesavanje_Subjekat">
+            <End Role="Subjekat" EntitySet="Subjekat" />
+            <End Role="Podesavanje" EntitySet="Podesavanje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Podesavanje_Valuta" Association="Self.FK_Podesavanje_Valuta">
+            <End Role="Valuta" EntitySet="Valuta" />
+            <End Role="Podesavanje" EntitySet="Podesavanje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posta_Drzava" Association="Self.FK_Posta_Drzava">
+            <End Role="Drzava" EntitySet="Drzava" />
+            <End Role="Posta" EntitySet="Posta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Predracun_NP" Association="Self.FK_Predracun_NP">
+            <End Role="NP" EntitySet="NP" />
+            <End Role="Predracun" EntitySet="Predracun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Predracun_OdgovorneOsobe" Association="Self.FK_Predracun_OdgovorneOsobe">
+            <End Role="OdgovorneOsobe" EntitySet="OdgovorneOsobe" />
+            <End Role="Predracun" EntitySet="Predracun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Predracun_Posta" Association="Self.FK_Predracun_Posta">
+            <End Role="Posta" EntitySet="Posta" />
+            <End Role="Predracun" EntitySet="Predracun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Predracun_Status" Association="Self.FK_Predracun_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Predracun" EntitySet="Predracun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Predracun_Subjekat" Association="Self.FK_Predracun_Subjekat">
+            <End Role="Subjekat" EntitySet="Subjekat" />
+            <End Role="Predracun" EntitySet="Predracun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Predracun_Subjekat1" Association="Self.FK_Predracun_Subjekat1">
+            <End Role="Subjekat" EntitySet="Subjekat" />
+            <End Role="Predracun" EntitySet="Predracun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Predracun_Valuta" Association="Self.FK_Predracun_Valuta">
+            <End Role="Valuta" EntitySet="Valuta" />
+            <End Role="Predracun" EntitySet="Predracun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PredracunStavke_Artikal" Association="Self.FK_PredracunStavke_Artikal">
+            <End Role="Artikal" EntitySet="Artikal" />
+            <End Role="PredracunStavke" EntitySet="PredracunStavke" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PredracunStavke_JM" Association="Self.FK_PredracunStavke_JM">
+            <End Role="JM" EntitySet="JM" />
+            <End Role="PredracunStavke" EntitySet="PredracunStavke" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PredracunStavke_Porez" Association="Self.FK_PredracunStavke_Porez">
+            <End Role="Porez" EntitySet="Porez" />
+            <End Role="PredracunStavke" EntitySet="PredracunStavke" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PredracunStavke_Predracun" Association="Self.FK_PredracunStavke_Predracun">
+            <End Role="Predracun" EntitySet="Predracun" />
+            <End Role="PredracunStavke" EntitySet="PredracunStavke" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promet_NP" Association="Self.FK_Promet_NP">
+            <End Role="NP" EntitySet="NP" />
+            <End Role="Promet" EntitySet="Promet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promet_OdgovorneOsobe" Association="Self.FK_Promet_OdgovorneOsobe">
+            <End Role="OdgovorneOsobe" EntitySet="OdgovorneOsobe" />
+            <End Role="Promet" EntitySet="Promet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promet_Posta" Association="Self.FK_Promet_Posta">
+            <End Role="Posta" EntitySet="Posta" />
+            <End Role="Promet" EntitySet="Promet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promet_Status" Association="Self.FK_Promet_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Promet" EntitySet="Promet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promet_Subjekat" Association="Self.FK_Promet_Subjekat">
+            <End Role="Subjekat" EntitySet="Subjekat" />
+            <End Role="Promet" EntitySet="Promet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promet_Subjekat1" Association="Self.FK_Promet_Subjekat1">
+            <End Role="Subjekat" EntitySet="Subjekat" />
+            <End Role="Promet" EntitySet="Promet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promet_Valuta" Association="Self.FK_Promet_Valuta">
+            <End Role="Valuta" EntitySet="Valuta" />
+            <End Role="Promet" EntitySet="Promet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrometStavke_Artikal" Association="Self.FK_PrometStavke_Artikal">
+            <End Role="Artikal" EntitySet="Artikal" />
+            <End Role="PrometStavke" EntitySet="PrometStavke" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrometStavke_JM" Association="Self.FK_PrometStavke_JM">
+            <End Role="JM" EntitySet="JM" />
+            <End Role="PrometStavke" EntitySet="PrometStavke" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrometStavke_Porez" Association="Self.FK_PrometStavke_Porez">
+            <End Role="Porez" EntitySet="Porez" />
+            <End Role="PrometStavke" EntitySet="PrometStavke" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrometStavke_Promet" Association="Self.FK_PrometStavke_Promet">
+            <End Role="Promet" EntitySet="Promet" />
+            <End Role="PrometStavke" EntitySet="PrometStavke" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subjekat_Drzava" Association="Self.FK_Subjekat_Drzava">
+            <End Role="Drzava" EntitySet="Drzava" />
+            <End Role="Subjekat" EntitySet="Subjekat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subjekat_PB" Association="Self.FK_Subjekat_PB">
+            <End Role="Posta" EntitySet="Posta" />
+            <End Role="Subjekat" EntitySet="Subjekat" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MONTESINOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Artikal">
+          <Key>
+            <PropertyRef Name="Artikal_ID" />
+          </Key>
+          <Property Name="Artikal_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Aktivan" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Vrsta" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Sifra" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Cena" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="JM_ID" Type="Int32" Nullable="false" />
+          <Property Name="PS_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="JM" Relationship="Self.FK_Artikal_JM" FromRole="Artikal" ToRole="JM" />
+          <NavigationProperty Name="Porez" Relationship="Self.FK_Artikal_Porez" FromRole="Artikal" ToRole="Porez" />
+          <NavigationProperty Name="PredracunStavkes" Relationship="Self.FK_PredracunStavke_Artikal" FromRole="Artikal" ToRole="PredracunStavke" />
+          <NavigationProperty Name="PrometStavkes" Relationship="Self.FK_PrometStavke_Artikal" FromRole="Artikal" ToRole="PrometStavke" />
+        </EntityType>
+        <EntityType Name="Drzava">
+          <Key>
+            <PropertyRef Name="Drzava_ID" />
+          </Key>
+          <Property Name="Drzava_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Postas" Relationship="Self.FK_Posta_Drzava" FromRole="Drzava" ToRole="Posta" />
+          <NavigationProperty Name="Subjekats" Relationship="Self.FK_Subjekat_Drzava" FromRole="Drzava" ToRole="Subjekat" />
+        </EntityType>
+        <EntityType Name="JM">
+          <Key>
+            <PropertyRef Name="JM_ID" />
+          </Key>
+          <Property Name="JM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kod" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Artikals" Relationship="Self.FK_Artikal_JM" FromRole="JM" ToRole="Artikal" />
+          <NavigationProperty Name="PredracunStavkes" Relationship="Self.FK_PredracunStavke_JM" FromRole="JM" ToRole="PredracunStavke" />
+          <NavigationProperty Name="PrometStavkes" Relationship="Self.FK_PrometStavke_JM" FromRole="JM" ToRole="PrometStavke" />
+        </EntityType>
+        <EntityType Name="NP">
+          <Key>
+            <PropertyRef Name="NP_ID" />
+          </Key>
+          <Property Name="NP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nacin" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Predracuns" Relationship="Self.FK_Predracun_NP" FromRole="NP" ToRole="Predracun" />
+          <NavigationProperty Name="Promets" Relationship="Self.FK_Promet_NP" FromRole="NP" ToRole="Promet" />
+        </EntityType>
+        <EntityType Name="OdgovorneOsobe">
+          <Key>
+            <PropertyRef Name="OdgovorneOsobe_ID" />
+          </Key>
+          <Property Name="OdgovorneOsobe_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Podesavanjes" Relationship="Self.FK_Podesavanje_OdgovorneOsobe" FromRole="OdgovorneOsobe" ToRole="Podesavanje" />
+          <NavigationProperty Name="Predracuns" Relationship="Self.FK_Predracun_OdgovorneOsobe" FromRole="OdgovorneOsobe" ToRole="Predracun" />
+          <NavigationProperty Name="Promets" Relationship="Self.FK_Promet_OdgovorneOsobe" FromRole="OdgovorneOsobe" ToRole="Promet" />
+        </EntityType>
+        <EntityType Name="Podesavanje">
+          <Key>
+            <PropertyRef Name="Podesavanje_ID" />
+          </Key>
+          <Property Name="Podesavanje_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subjekat_ID" Type="Int32" Nullable="false" />
+          <Property Name="OdgovorneOsobe_ID" Type="Int32" Nullable="false" />
+          <Property Name="Valuta_ID" Type="Int32" Nullable="false" />
+          <Property Name="NP_ID" Type="Int32" Nullable="false" />
+          <Property Name="RokVazenja" Type="Int16" Nullable="false" />
+          <Property Name="StatusPredracun_ID" Type="Int32" Nullable="false" />
+          <Property Name="StatusRacun_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OdgovorneOsobe" Relationship="Self.FK_Podesavanje_OdgovorneOsobe" FromRole="Podesavanje" ToRole="OdgovorneOsobe" />
+          <NavigationProperty Name="Subjekat" Relationship="Self.FK_Podesavanje_Subjekat" FromRole="Podesavanje" ToRole="Subjekat" />
+          <NavigationProperty Name="Valuta" Relationship="Self.FK_Podesavanje_Valuta" FromRole="Podesavanje" ToRole="Valuta" />
+        </EntityType>
+        <EntityType Name="Porez">
+          <Key>
+            <PropertyRef Name="PS_ID" />
+          </Key>
+          <Property Name="PS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kod" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Vrednost" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Artikals" Relationship="Self.FK_Artikal_Porez" FromRole="Porez" ToRole="Artikal" />
+          <NavigationProperty Name="PredracunStavkes" Relationship="Self.FK_PredracunStavke_Porez" FromRole="Porez" ToRole="PredracunStavke" />
+          <NavigationProperty Name="PrometStavkes" Relationship="Self.FK_PrometStavke_Porez" FromRole="Porez" ToRole="PrometStavke" />
+        </EntityType>
+        <EntityType Name="Posta">
+          <Key>
+            <PropertyRef Name="Posta_ID" />
+          </Key>
+          <Property Name="Posta_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Broj" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Drzava_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Drzava" Relationship="Self.FK_Posta_Drzava" FromRole="Posta" ToRole="Drzava" />
+          <NavigationProperty Name="Predracuns" Relationship="Self.FK_Predracun_Posta" FromRole="Posta" ToRole="Predracun" />
+          <NavigationProperty Name="Promets" Relationship="Self.FK_Promet_Posta" FromRole="Posta" ToRole="Promet" />
+          <NavigationProperty Name="Subjekats" Relationship="Self.FK_Subjekat_PB" FromRole="Posta" ToRole="Subjekat" />
+        </EntityType>
+        <EntityType Name="Predracun">
+          <Key>
+            <PropertyRef Name="Predracun_ID" />
+          </Key>
+          <Property Name="Predracun_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ponuda_ID" Type="Int32" />
+          <Property Name="Broj" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RokIsporuke" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Subjekat_ID" Type="Int32" Nullable="false" />
+          <Property Name="Primalac_ID" Type="Int32" Nullable="false" />
+          <Property Name="RokVazenja" Type="Int16" Nullable="false" />
+          <Property Name="NP_ID" Type="Int32" />
+          <Property Name="Status_ID" Type="Int32" />
+          <Property Name="Valuta_ID" Type="Int32" />
+          <Property Name="OdgovorneOsobe_ID" Type="Int32" />
+          <Property Name="Posta_ID" Type="Int32" />
+          <Property Name="Napomena" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Ukupno" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PopustBroj" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PopustProcenat" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="Vrednost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PDV" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ZaPlacanje" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="NP" Relationship="Self.FK_Predracun_NP" FromRole="Predracun" ToRole="NP" />
+          <NavigationProperty Name="OdgovorneOsobe" Relationship="Self.FK_Predracun_OdgovorneOsobe" FromRole="Predracun" ToRole="OdgovorneOsobe" />
+          <NavigationProperty Name="Posta" Relationship="Self.FK_Predracun_Posta" FromRole="Predracun" ToRole="Posta" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Predracun_Status" FromRole="Predracun" ToRole="Status" />
+          <NavigationProperty Name="Subjekat" Relationship="Self.FK_Predracun_Subjekat" FromRole="Predracun" ToRole="Subjekat" />
+          <NavigationProperty Name="Subjekat1" Relationship="Self.FK_Predracun_Subjekat1" FromRole="Predracun" ToRole="Subjekat" />
+          <NavigationProperty Name="Valuta" Relationship="Self.FK_Predracun_Valuta" FromRole="Predracun" ToRole="Valuta" />
+          <NavigationProperty Name="PredracunStavkes" Relationship="Self.FK_PredracunStavke_Predracun" FromRole="Predracun" ToRole="PredracunStavke" />
+        </EntityType>
+        <EntityType Name="PredracunStavke">
+          <Key>
+            <PropertyRef Name="PredracunStavke_ID" />
+          </Key>
+          <Property Name="PredracunStavke_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Predracun_ID" Type="Int32" Nullable="false" />
+          <Property Name="Pozicija" Type="Int16" Nullable="false" />
+          <Property Name="Napomena" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Artikal_ID" Type="Int32" Nullable="false" />
+          <Property Name="Sifra" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="JM_ID" Type="Int32" Nullable="false" />
+          <Property Name="Kolicina" Type="Decimal" Precision="11" Scale="4" Nullable="false" />
+          <Property Name="Cena" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Rabat" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Vrednost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PS_ID" Type="Int32" Nullable="false" />
+          <Property Name="CenaPDV" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Artikal" Relationship="Self.FK_PredracunStavke_Artikal" FromRole="PredracunStavke" ToRole="Artikal" />
+          <NavigationProperty Name="JM" Relationship="Self.FK_PredracunStavke_JM" FromRole="PredracunStavke" ToRole="JM" />
+          <NavigationProperty Name="Porez" Relationship="Self.FK_PredracunStavke_Porez" FromRole="PredracunStavke" ToRole="Porez" />
+          <NavigationProperty Name="Predracun" Relationship="Self.FK_PredracunStavke_Predracun" FromRole="PredracunStavke" ToRole="Predracun" />
+        </EntityType>
+        <EntityType Name="Promet">
+          <Key>
+            <PropertyRef Name="Promet_ID" />
+          </Key>
+          <Property Name="Promet_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Predracun_ID" Type="Int32" />
+          <Property Name="VrstaDokumenta" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Broj" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Otpremnica" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Racun" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PDVDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Subjekat_ID" Type="Int32" Nullable="false" />
+          <Property Name="Primalac_ID" Type="Int32" Nullable="false" />
+          <Property Name="RokVazenja" Type="Int16" Nullable="false" />
+          <Property Name="Dospece" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NP_ID" Type="Int32" />
+          <Property Name="Status_ID" Type="Int32" />
+          <Property Name="Valuta_ID" Type="Int32" />
+          <Property Name="OdgovorneOsobe_ID" Type="Int32" />
+          <Property Name="Posta_ID" Type="Int32" />
+          <Property Name="Napomena" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Ukupno" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PopustBroj" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PopustProcenat" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="Vrednost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PDV" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ZaPlacanje" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="NP" Relationship="Self.FK_Promet_NP" FromRole="Promet" ToRole="NP" />
+          <NavigationProperty Name="OdgovorneOsobe" Relationship="Self.FK_Promet_OdgovorneOsobe" FromRole="Promet" ToRole="OdgovorneOsobe" />
+          <NavigationProperty Name="Posta" Relationship="Self.FK_Promet_Posta" FromRole="Promet" ToRole="Posta" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Promet_Status" FromRole="Promet" ToRole="Status" />
+          <NavigationProperty Name="Subjekat" Relationship="Self.FK_Promet_Subjekat" FromRole="Promet" ToRole="Subjekat" />
+          <NavigationProperty Name="Subjekat1" Relationship="Self.FK_Promet_Subjekat1" FromRole="Promet" ToRole="Subjekat" />
+          <NavigationProperty Name="Valuta" Relationship="Self.FK_Promet_Valuta" FromRole="Promet" ToRole="Valuta" />
+          <NavigationProperty Name="PrometStavkes" Relationship="Self.FK_PrometStavke_Promet" FromRole="Promet" ToRole="PrometStavke" />
+        </EntityType>
+        <EntityType Name="PrometStavke">
+          <Key>
+            <PropertyRef Name="PrometStavke_ID" />
+          </Key>
+          <Property Name="PrometStavke_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Promet_ID" Type="Int32" Nullable="false" />
+          <Property Name="Pozicija" Type="Int16" Nullable="false" />
+          <Property Name="Napomena" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Artikal_ID" Type="Int32" Nullable="false" />
+          <Property Name="Sifra" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="JM_ID" Type="Int32" Nullable="false" />
+          <Property Name="Kolicina" Type="Decimal" Precision="11" Scale="4" Nullable="false" />
+          <Property Name="Cena" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Rabat" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="Vrednost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PS_ID" Type="Int32" Nullable="false" />
+          <Property Name="CenaPDV" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Artikal" Relationship="Self.FK_PrometStavke_Artikal" FromRole="PrometStavke" ToRole="Artikal" />
+          <NavigationProperty Name="JM" Relationship="Self.FK_PrometStavke_JM" FromRole="PrometStavke" ToRole="JM" />
+          <NavigationProperty Name="Porez" Relationship="Self.FK_PrometStavke_Porez" FromRole="PrometStavke" ToRole="Porez" />
+          <NavigationProperty Name="Promet" Relationship="Self.FK_PrometStavke_Promet" FromRole="PrometStavke" ToRole="Promet" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Status_ID" />
+          </Key>
+          <Property Name="Status_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="jePredracun" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="jeRacun" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Predracuns" Relationship="Self.FK_Predracun_Status" FromRole="Status" ToRole="Predracun" />
+          <NavigationProperty Name="Promets" Relationship="Self.FK_Promet_Status" FromRole="Status" ToRole="Promet" />
+        </EntityType>
+        <EntityType Name="Subjekat">
+          <Key>
+            <PropertyRef Name="Subjekat_ID" />
+          </Key>
+          <Property Name="Subjekat_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Naziv2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="jeKupac" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="jeDobavljac" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="OIB" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Adresa" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Posta_ID" Type="Int32" Nullable="false" />
+          <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Drzava_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Drzava" Relationship="Self.FK_Subjekat_Drzava" FromRole="Subjekat" ToRole="Drzava" />
+          <NavigationProperty Name="Podesavanjes" Relationship="Self.FK_Podesavanje_Subjekat" FromRole="Subjekat" ToRole="Podesavanje" />
+          <NavigationProperty Name="Posta" Relationship="Self.FK_Subjekat_PB" FromRole="Subjekat" ToRole="Posta" />
+          <NavigationProperty Name="Predracuns" Relationship="Self.FK_Predracun_Subjekat" FromRole="Subjekat" ToRole="Predracun" />
+          <NavigationProperty Name="Predracuns1" Relationship="Self.FK_Predracun_Subjekat1" FromRole="Subjekat" ToRole="Predracun" />
+          <NavigationProperty Name="Promets" Relationship="Self.FK_Promet_Subjekat" FromRole="Subjekat" ToRole="Promet" />
+          <NavigationProperty Name="Promets1" Relationship="Self.FK_Promet_Subjekat1" FromRole="Subjekat" ToRole="Promet" />
+        </EntityType>
+        <EntityType Name="Valuta">
+          <Key>
+            <PropertyRef Name="Valuta_ID" />
+          </Key>
+          <Property Name="Valuta_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Oznaka" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Podesavanjes" Relationship="Self.FK_Podesavanje_Valuta" FromRole="Valuta" ToRole="Podesavanje" />
+          <NavigationProperty Name="Predracuns" Relationship="Self.FK_Predracun_Valuta" FromRole="Valuta" ToRole="Predracun" />
+          <NavigationProperty Name="Promets" Relationship="Self.FK_Promet_Valuta" FromRole="Valuta" ToRole="Promet" />
+        </EntityType>
+        <Association Name="FK_Artikal_JM">
+          <End Role="JM" Type="Self.JM" Multiplicity="1" />
+          <End Role="Artikal" Type="Self.Artikal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JM">
+              <PropertyRef Name="JM_ID" />
+            </Principal>
+            <Dependent Role="Artikal">
+              <PropertyRef Name="JM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Artikal_Porez">
+          <End Role="Porez" Type="Self.Porez" Multiplicity="1" />
+          <End Role="Artikal" Type="Self.Artikal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Porez">
+              <PropertyRef Name="PS_ID" />
+            </Principal>
+            <Dependent Role="Artikal">
+              <PropertyRef Name="PS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PredracunStavke_Artikal">
+          <End Role="Artikal" Type="Self.Artikal" Multiplicity="1" />
+          <End Role="PredracunStavke" Type="Self.PredracunStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artikal">
+              <PropertyRef Name="Artikal_ID" />
+            </Principal>
+            <Dependent Role="PredracunStavke">
+              <PropertyRef Name="Artikal_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrometStavke_Artikal">
+          <End Role="Artikal" Type="Self.Artikal" Multiplicity="1" />
+          <End Role="PrometStavke" Type="Self.PrometStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artikal">
+              <PropertyRef Name="Artikal_ID" />
+            </Principal>
+            <Dependent Role="PrometStavke">
+              <PropertyRef Name="Artikal_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posta_Drzava">
+          <End Role="Drzava" Type="Self.Drzava" Multiplicity="1" />
+          <End Role="Posta" Type="Self.Posta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drzava">
+              <PropertyRef Name="Drzava_ID" />
+            </Principal>
+            <Dependent Role="Posta">
+              <PropertyRef Name="Drzava_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subjekat_Drzava">
+          <End Role="Drzava" Type="Self.Drzava" Multiplicity="1" />
+          <End Role="Subjekat" Type="Self.Subjekat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drzava">
+              <PropertyRef Name="Drzava_ID" />
+            </Principal>
+            <Dependent Role="Subjekat">
+              <PropertyRef Name="Drzava_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PredracunStavke_JM">
+          <End Role="JM" Type="Self.JM" Multiplicity="1" />
+          <End Role="PredracunStavke" Type="Self.PredracunStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JM">
+              <PropertyRef Name="JM_ID" />
+            </Principal>
+            <Dependent Role="PredracunStavke">
+              <PropertyRef Name="JM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrometStavke_JM">
+          <End Role="JM" Type="Self.JM" Multiplicity="1" />
+          <End Role="PrometStavke" Type="Self.PrometStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JM">
+              <PropertyRef Name="JM_ID" />
+            </Principal>
+            <Dependent Role="PrometStavke">
+              <PropertyRef Name="JM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Predracun_NP">
+          <End Role="NP" Type="Self.NP" Multiplicity="0..1" />
+          <End Role="Predracun" Type="Self.Predracun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NP">
+              <PropertyRef Name="NP_ID" />
+            </Principal>
+            <Dependent Role="Predracun">
+              <PropertyRef Name="NP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promet_NP">
+          <End Role="NP" Type="Self.NP" Multiplicity="0..1" />
+          <End Role="Promet" Type="Self.Promet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NP">
+              <PropertyRef Name="NP_ID" />
+            </Principal>
+            <Dependent Role="Promet">
+              <PropertyRef Name="NP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Podesavanje_OdgovorneOsobe">
+          <End Role="OdgovorneOsobe" Type="Self.OdgovorneOsobe" Multiplicity="1" />
+          <End Role="Podesavanje" Type="Self.Podesavanje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdgovorneOsobe">
+              <PropertyRef Name="OdgovorneOsobe_ID" />
+            </Principal>
+            <Dependent Role="Podesavanje">
+              <PropertyRef Name="OdgovorneOsobe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Predracun_OdgovorneOsobe">
+          <End Role="OdgovorneOsobe" Type="Self.OdgovorneOsobe" Multiplicity="0..1" />
+          <End Role="Predracun" Type="Self.Predracun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdgovorneOsobe">
+              <PropertyRef Name="OdgovorneOsobe_ID" />
+            </Principal>
+            <Dependent Role="Predracun">
+              <PropertyRef Name="OdgovorneOsobe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promet_OdgovorneOsobe">
+          <End Role="OdgovorneOsobe" Type="Self.OdgovorneOsobe" Multiplicity="0..1" />
+          <End Role="Promet" Type="Self.Promet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdgovorneOsobe">
+              <PropertyRef Name="OdgovorneOsobe_ID" />
+            </Principal>
+            <Dependent Role="Promet">
+              <PropertyRef Name="OdgovorneOsobe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Podesavanje_Subjekat">
+          <End Role="Subjekat" Type="Self.Subjekat" Multiplicity="1" />
+          <End Role="Podesavanje" Type="Self.Podesavanje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjekat">
+              <PropertyRef Name="Subjekat_ID" />
+            </Principal>
+            <Dependent Role="Podesavanje">
+              <PropertyRef Name="Subjekat_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Podesavanje_Valuta">
+          <End Role="Valuta" Type="Self.Valuta" Multiplicity="1" />
+          <End Role="Podesavanje" Type="Self.Podesavanje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Valuta">
+              <PropertyRef Name="Valuta_ID" />
+            </Principal>
+            <Dependent Role="Podesavanje">
+              <PropertyRef Name="Valuta_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PredracunStavke_Porez">
+          <End Role="Porez" Type="Self.Porez" Multiplicity="1" />
+          <End Role="PredracunStavke" Type="Self.PredracunStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Porez">
+              <PropertyRef Name="PS_ID" />
+            </Principal>
+            <Dependent Role="PredracunStavke">
+              <PropertyRef Name="PS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrometStavke_Porez">
+          <End Role="Porez" Type="Self.Porez" Multiplicity="1" />
+          <End Role="PrometStavke" Type="Self.PrometStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Porez">
+              <PropertyRef Name="PS_ID" />
+            </Principal>
+            <Dependent Role="PrometStavke">
+              <PropertyRef Name="PS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Predracun_Posta">
+          <End Role="Posta" Type="Self.Posta" Multiplicity="0..1" />
+          <End Role="Predracun" Type="Self.Predracun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posta">
+              <PropertyRef Name="Posta_ID" />
+            </Principal>
+            <Dependent Role="Predracun">
+              <PropertyRef Name="Posta_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promet_Posta">
+          <End Role="Posta" Type="Self.Posta" Multiplicity="0..1" />
+          <End Role="Promet" Type="Self.Promet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posta">
+              <PropertyRef Name="Posta_ID" />
+            </Principal>
+            <Dependent Role="Promet">
+              <PropertyRef Name="Posta_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subjekat_PB">
+          <End Role="Posta" Type="Self.Posta" Multiplicity="1" />
+          <End Role="Subjekat" Type="Self.Subjekat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posta">
+              <PropertyRef Name="Posta_ID" />
+            </Principal>
+            <Dependent Role="Subjekat">
+              <PropertyRef Name="Posta_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Predracun_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Predracun" Type="Self.Predracun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Status_ID" />
+            </Principal>
+            <Dependent Role="Predracun">
+              <PropertyRef Name="Status_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Predracun_Subjekat">
+          <End Role="Subjekat" Type="Self.Subjekat" Multiplicity="1" />
+          <End Role="Predracun" Type="Self.Predracun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjekat">
+              <PropertyRef Name="Subjekat_ID" />
+            </Principal>
+            <Dependent Role="Predracun">
+              <PropertyRef Name="Subjekat_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Predracun_Subjekat1">
+          <End Role="Subjekat" Type="Self.Subjekat" Multiplicity="1" />
+          <End Role="Predracun" Type="Self.Predracun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjekat">
+              <PropertyRef Name="Subjekat_ID" />
+            </Principal>
+            <Dependent Role="Predracun">
+              <PropertyRef Name="Primalac_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Predracun_Valuta">
+          <End Role="Valuta" Type="Self.Valuta" Multiplicity="0..1" />
+          <End Role="Predracun" Type="Self.Predracun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Valuta">
+              <PropertyRef Name="Valuta_ID" />
+            </Principal>
+            <Dependent Role="Predracun">
+              <PropertyRef Name="Valuta_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PredracunStavke_Predracun">
+          <End Role="Predracun" Type="Self.Predracun" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PredracunStavke" Type="Self.PredracunStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Predracun">
+              <PropertyRef Name="Predracun_ID" />
+            </Principal>
+            <Dependent Role="PredracunStavke">
+              <PropertyRef Name="Predracun_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promet_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Promet" Type="Self.Promet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Status_ID" />
+            </Principal>
+            <Dependent Role="Promet">
+              <PropertyRef Name="Status_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promet_Subjekat">
+          <End Role="Subjekat" Type="Self.Subjekat" Multiplicity="1" />
+          <End Role="Promet" Type="Self.Promet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjekat">
+              <PropertyRef Name="Subjekat_ID" />
+            </Principal>
+            <Dependent Role="Promet">
+              <PropertyRef Name="Subjekat_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promet_Subjekat1">
+          <End Role="Subjekat" Type="Self.Subjekat" Multiplicity="1" />
+          <End Role="Promet" Type="Self.Promet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjekat">
+              <PropertyRef Name="Subjekat_ID" />
+            </Principal>
+            <Dependent Role="Promet">
+              <PropertyRef Name="Primalac_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promet_Valuta">
+          <End Role="Valuta" Type="Self.Valuta" Multiplicity="0..1" />
+          <End Role="Promet" Type="Self.Promet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Valuta">
+              <PropertyRef Name="Valuta_ID" />
+            </Principal>
+            <Dependent Role="Promet">
+              <PropertyRef Name="Valuta_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrometStavke_Promet">
+          <End Role="Promet" Type="Self.Promet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PrometStavke" Type="Self.PrometStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promet">
+              <PropertyRef Name="Promet_ID" />
+            </Principal>
+            <Dependent Role="PrometStavke">
+              <PropertyRef Name="Promet_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MONTESINOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Artikals" EntityType="Self.Artikal" />
+          <EntitySet Name="Drzavas" EntityType="Self.Drzava" />
+          <EntitySet Name="JMs" EntityType="Self.JM" />
+          <EntitySet Name="NPs" EntityType="Self.NP" />
+          <EntitySet Name="OdgovorneOsobes" EntityType="Self.OdgovorneOsobe" />
+          <EntitySet Name="Podesavanjes" EntityType="Self.Podesavanje" />
+          <EntitySet Name="Porezs" EntityType="Self.Porez" />
+          <EntitySet Name="Postas" EntityType="Self.Posta" />
+          <EntitySet Name="Predracuns" EntityType="Self.Predracun" />
+          <EntitySet Name="PredracunStavkes" EntityType="Self.PredracunStavke" />
+          <EntitySet Name="Promets" EntityType="Self.Promet" />
+          <EntitySet Name="PrometStavkes" EntityType="Self.PrometStavke" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="Subjekats" EntityType="Self.Subjekat" />
+          <EntitySet Name="Valutas" EntityType="Self.Valuta" />
+          <AssociationSet Name="FK_Artikal_JM" Association="Self.FK_Artikal_JM">
+            <End Role="JM" EntitySet="JMs" />
+            <End Role="Artikal" EntitySet="Artikals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Artikal_Porez" Association="Self.FK_Artikal_Porez">
+            <End Role="Porez" EntitySet="Porezs" />
+            <End Role="Artikal" EntitySet="Artikals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PredracunStavke_Artikal" Association="Self.FK_PredracunStavke_Artikal">
+            <End Role="Artikal" EntitySet="Artikals" />
+            <End Role="PredracunStavke" EntitySet="PredracunStavkes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrometStavke_Artikal" Association="Self.FK_PrometStavke_Artikal">
+            <End Role="Artikal" EntitySet="Artikals" />
+            <End Role="PrometStavke" EntitySet="PrometStavkes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posta_Drzava" Association="Self.FK_Posta_Drzava">
+            <End Role="Drzava" EntitySet="Drzavas" />
+            <End Role="Posta" EntitySet="Postas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subjekat_Drzava" Association="Self.FK_Subjekat_Drzava">
+            <End Role="Drzava" EntitySet="Drzavas" />
+            <End Role="Subjekat" EntitySet="Subjekats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PredracunStavke_JM" Association="Self.FK_PredracunStavke_JM">
+            <End Role="JM" EntitySet="JMs" />
+            <End Role="PredracunStavke" EntitySet="PredracunStavkes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrometStavke_JM" Association="Self.FK_PrometStavke_JM">
+            <End Role="JM" EntitySet="JMs" />
+            <End Role="PrometStavke" EntitySet="PrometStavkes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Predracun_NP" Association="Self.FK_Predracun_NP">
+            <End Role="NP" EntitySet="NPs" />
+            <End Role="Predracun" EntitySet="Predracuns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promet_NP" Association="Self.FK_Promet_NP">
+            <End Role="NP" EntitySet="NPs" />
+            <End Role="Promet" EntitySet="Promets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Podesavanje_OdgovorneOsobe" Association="Self.FK_Podesavanje_OdgovorneOsobe">
+            <End Role="OdgovorneOsobe" EntitySet="OdgovorneOsobes" />
+            <End Role="Podesavanje" EntitySet="Podesavanjes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Predracun_OdgovorneOsobe" Association="Self.FK_Predracun_OdgovorneOsobe">
+            <End Role="OdgovorneOsobe" EntitySet="OdgovorneOsobes" />
+            <End Role="Predracun" EntitySet="Predracuns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promet_OdgovorneOsobe" Association="Self.FK_Promet_OdgovorneOsobe">
+            <End Role="OdgovorneOsobe" EntitySet="OdgovorneOsobes" />
+            <End Role="Promet" EntitySet="Promets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Podesavanje_Subjekat" Association="Self.FK_Podesavanje_Subjekat">
+            <End Role="Subjekat" EntitySet="Subjekats" />
+            <End Role="Podesavanje" EntitySet="Podesavanjes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Podesavanje_Valuta" Association="Self.FK_Podesavanje_Valuta">
+            <End Role="Valuta" EntitySet="Valutas" />
+            <End Role="Podesavanje" EntitySet="Podesavanjes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PredracunStavke_Porez" Association="Self.FK_PredracunStavke_Porez">
+            <End Role="Porez" EntitySet="Porezs" />
+            <End Role="PredracunStavke" EntitySet="PredracunStavkes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrometStavke_Porez" Association="Self.FK_PrometStavke_Porez">
+            <End Role="Porez" EntitySet="Porezs" />
+            <End Role="PrometStavke" EntitySet="PrometStavkes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Predracun_Posta" Association="Self.FK_Predracun_Posta">
+            <End Role="Posta" EntitySet="Postas" />
+            <End Role="Predracun" EntitySet="Predracuns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promet_Posta" Association="Self.FK_Promet_Posta">
+            <End Role="Posta" EntitySet="Postas" />
+            <End Role="Promet" EntitySet="Promets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subjekat_PB" Association="Self.FK_Subjekat_PB">
+            <End Role="Posta" EntitySet="Postas" />
+            <End Role="Subjekat" EntitySet="Subjekats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Predracun_Status" Association="Self.FK_Predracun_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Predracun" EntitySet="Predracuns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Predracun_Subjekat" Association="Self.FK_Predracun_Subjekat">
+            <End Role="Subjekat" EntitySet="Subjekats" />
+            <End Role="Predracun" EntitySet="Predracuns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Predracun_Subjekat1" Association="Self.FK_Predracun_Subjekat1">
+            <End Role="Subjekat" EntitySet="Subjekats" />
+            <End Role="Predracun" EntitySet="Predracuns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Predracun_Valuta" Association="Self.FK_Predracun_Valuta">
+            <End Role="Valuta" EntitySet="Valutas" />
+            <End Role="Predracun" EntitySet="Predracuns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PredracunStavke_Predracun" Association="Self.FK_PredracunStavke_Predracun">
+            <End Role="Predracun" EntitySet="Predracuns" />
+            <End Role="PredracunStavke" EntitySet="PredracunStavkes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promet_Status" Association="Self.FK_Promet_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Promet" EntitySet="Promets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promet_Subjekat" Association="Self.FK_Promet_Subjekat">
+            <End Role="Subjekat" EntitySet="Subjekats" />
+            <End Role="Promet" EntitySet="Promets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promet_Subjekat1" Association="Self.FK_Promet_Subjekat1">
+            <End Role="Subjekat" EntitySet="Subjekats" />
+            <End Role="Promet" EntitySet="Promets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promet_Valuta" Association="Self.FK_Promet_Valuta">
+            <End Role="Valuta" EntitySet="Valutas" />
+            <End Role="Promet" EntitySet="Promets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrometStavke_Promet" Association="Self.FK_PrometStavke_Promet">
+            <End Role="Promet" EntitySet="Promets" />
+            <End Role="PrometStavke" EntitySet="PrometStavkes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MONTESINOModelStoreContainer" CdmEntityContainer="MONTESINOEntities">
+          <EntitySetMapping Name="Artikals">
+            <EntityTypeMapping TypeName="MONTESINOModel.Artikal">
+              <MappingFragment StoreEntitySet="Artikal">
+                <ScalarProperty Name="Artikal_ID" ColumnName="Artikal_ID" />
+                <ScalarProperty Name="Aktivan" ColumnName="Aktivan" />
+                <ScalarProperty Name="Vrsta" ColumnName="Vrsta" />
+                <ScalarProperty Name="Sifra" ColumnName="Sifra" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Cena" ColumnName="Cena" />
+                <ScalarProperty Name="JM_ID" ColumnName="JM_ID" />
+                <ScalarProperty Name="PS_ID" ColumnName="PS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drzavas">
+            <EntityTypeMapping TypeName="MONTESINOModel.Drzava">
+              <MappingFragment StoreEntitySet="Drzava">
+                <ScalarProperty Name="Drzava_ID" ColumnName="Drzava_ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JMs">
+            <EntityTypeMapping TypeName="MONTESINOModel.JM">
+              <MappingFragment StoreEntitySet="JM">
+                <ScalarProperty Name="JM_ID" ColumnName="JM_ID" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NPs">
+            <EntityTypeMapping TypeName="MONTESINOModel.NP">
+              <MappingFragment StoreEntitySet="NP">
+                <ScalarProperty Name="NP_ID" ColumnName="NP_ID" />
+                <ScalarProperty Name="Nacin" ColumnName="Nacin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OdgovorneOsobes">
+            <EntityTypeMapping TypeName="MONTESINOModel.OdgovorneOsobe">
+              <MappingFragment StoreEntitySet="OdgovorneOsobe">
+                <ScalarProperty Name="OdgovorneOsobe_ID" ColumnName="OdgovorneOsobe_ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Podesavanjes">
+            <EntityTypeMapping TypeName="MONTESINOModel.Podesavanje">
+              <MappingFragment StoreEntitySet="Podesavanje">
+                <ScalarProperty Name="Podesavanje_ID" ColumnName="Podesavanje_ID" />
+                <ScalarProperty Name="Subjekat_ID" ColumnName="Subjekat_ID" />
+                <ScalarProperty Name="OdgovorneOsobe_ID" ColumnName="OdgovorneOsobe_ID" />
+                <ScalarProperty Name="Valuta_ID" ColumnName="Valuta_ID" />
+                <ScalarProperty Name="NP_ID" ColumnName="NP_ID" />
+                <ScalarProperty Name="RokVazenja" ColumnName="RokVazenja" />
+                <ScalarProperty Name="StatusPredracun_ID" ColumnName="StatusPredracun_ID" />
+                <ScalarProperty Name="StatusRacun_ID" ColumnName="StatusRacun_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Porezs">
+            <EntityTypeMapping TypeName="MONTESINOModel.Porez">
+              <MappingFragment StoreEntitySet="Porez">
+                <ScalarProperty Name="PS_ID" ColumnName="PS_ID" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Vrednost" ColumnName="Vrednost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Postas">
+            <EntityTypeMapping TypeName="MONTESINOModel.Posta">
+              <MappingFragment StoreEntitySet="Posta">
+                <ScalarProperty Name="Posta_ID" ColumnName="Posta_ID" />
+                <ScalarProperty Name="Broj" ColumnName="Broj" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Drzava_ID" ColumnName="Drzava_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Predracuns">
+            <EntityTypeMapping TypeName="MONTESINOModel.Predracun">
+              <MappingFragment StoreEntitySet="Predracun">
+                <ScalarProperty Name="Predracun_ID" ColumnName="Predracun_ID" />
+                <ScalarProperty Name="Ponuda_ID" ColumnName="Ponuda_ID" />
+                <ScalarProperty Name="Broj" ColumnName="Broj" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="RokIsporuke" ColumnName="RokIsporuke" />
+                <ScalarProperty Name="Subjekat_ID" ColumnName="Subjekat_ID" />
+                <ScalarProperty Name="Primalac_ID" ColumnName="Primalac_ID" />
+                <ScalarProperty Name="RokVazenja" ColumnName="RokVazenja" />
+                <ScalarProperty Name="NP_ID" ColumnName="NP_ID" />
+                <ScalarProperty Name="Status_ID" ColumnName="Status_ID" />
+                <ScalarProperty Name="Valuta_ID" ColumnName="Valuta_ID" />
+                <ScalarProperty Name="OdgovorneOsobe_ID" ColumnName="OdgovorneOsobe_ID" />
+                <ScalarProperty Name="Posta_ID" ColumnName="Posta_ID" />
+                <ScalarProperty Name="Napomena" ColumnName="Napomena" />
+                <ScalarProperty Name="Ukupno" ColumnName="Ukupno" />
+                <ScalarProperty Name="PopustBroj" ColumnName="PopustBroj" />
+                <ScalarProperty Name="PopustProcenat" ColumnName="PopustProcenat" />
+                <ScalarProperty Name="Vrednost" ColumnName="Vrednost" />
+                <ScalarProperty Name="PDV" ColumnName="PDV" />
+                <ScalarProperty Name="ZaPlacanje" ColumnName="ZaPlacanje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PredracunStavkes">
+            <EntityTypeMapping TypeName="MONTESINOModel.PredracunStavke">
+              <MappingFragment StoreEntitySet="PredracunStavke">
+                <ScalarProperty Name="PredracunStavke_ID" ColumnName="PredracunStavke_ID" />
+                <ScalarProperty Name="Predracun_ID" ColumnName="Predracun_ID" />
+                <ScalarProperty Name="Pozicija" ColumnName="Pozicija" />
+                <ScalarProperty Name="Napomena" ColumnName="Napomena" />
+                <ScalarProperty Name="Artikal_ID" ColumnName="Artikal_ID" />
+                <ScalarProperty Name="Sifra" ColumnName="Sifra" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="JM_ID" ColumnName="JM_ID" />
+                <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+                <ScalarProperty Name="Cena" ColumnName="Cena" />
+                <ScalarProperty Name="Rabat" ColumnName="Rabat" />
+                <ScalarProperty Name="Vrednost" ColumnName="Vrednost" />
+                <ScalarProperty Name="PS_ID" ColumnName="PS_ID" />
+                <ScalarProperty Name="CenaPDV" ColumnName="CenaPDV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promets">
+            <EntityTypeMapping TypeName="MONTESINOModel.Promet">
+              <MappingFragment StoreEntitySet="Promet">
+                <ScalarProperty Name="Promet_ID" ColumnName="Promet_ID" />
+                <ScalarProperty Name="Predracun_ID" ColumnName="Predracun_ID" />
+                <ScalarProperty Name="VrstaDokumenta" ColumnName="VrstaDokumenta" />
+                <ScalarProperty Name="Broj" ColumnName="Broj" />
+                <ScalarProperty Name="Otpremnica" ColumnName="Otpremnica" />
+                <ScalarProperty Name="Racun" ColumnName="Racun" />
+                <ScalarProperty Name="PDVDate" ColumnName="PDVDate" />
+                <ScalarProperty Name="Subjekat_ID" ColumnName="Subjekat_ID" />
+                <ScalarProperty Name="Primalac_ID" ColumnName="Primalac_ID" />
+                <ScalarProperty Name="RokVazenja" ColumnName="RokVazenja" />
+                <ScalarProperty Name="Dospece" ColumnName="Dospece" />
+                <ScalarProperty Name="NP_ID" ColumnName="NP_ID" />
+                <ScalarProperty Name="Status_ID" ColumnName="Status_ID" />
+                <ScalarProperty Name="Valuta_ID" ColumnName="Valuta_ID" />
+                <ScalarProperty Name="OdgovorneOsobe_ID" ColumnName="OdgovorneOsobe_ID" />
+                <ScalarProperty Name="Posta_ID" ColumnName="Posta_ID" />
+                <ScalarProperty Name="Napomena" ColumnName="Napomena" />
+                <ScalarProperty Name="Ukupno" ColumnName="Ukupno" />
+                <ScalarProperty Name="PopustBroj" ColumnName="PopustBroj" />
+                <ScalarProperty Name="PopustProcenat" ColumnName="PopustProcenat" />
+                <ScalarProperty Name="Vrednost" ColumnName="Vrednost" />
+                <ScalarProperty Name="PDV" ColumnName="PDV" />
+                <ScalarProperty Name="ZaPlacanje" ColumnName="ZaPlacanje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrometStavkes">
+            <EntityTypeMapping TypeName="MONTESINOModel.PrometStavke">
+              <MappingFragment StoreEntitySet="PrometStavke">
+                <ScalarProperty Name="PrometStavke_ID" ColumnName="PrometStavke_ID" />
+                <ScalarProperty Name="Promet_ID" ColumnName="Promet_ID" />
+                <ScalarProperty Name="Pozicija" ColumnName="Pozicija" />
+                <ScalarProperty Name="Napomena" ColumnName="Napomena" />
+                <ScalarProperty Name="Artikal_ID" ColumnName="Artikal_ID" />
+                <ScalarProperty Name="Sifra" ColumnName="Sifra" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="JM_ID" ColumnName="JM_ID" />
+                <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+                <ScalarProperty Name="Cena" ColumnName="Cena" />
+                <ScalarProperty Name="Rabat" ColumnName="Rabat" />
+                <ScalarProperty Name="Vrednost" ColumnName="Vrednost" />
+                <ScalarProperty Name="PS_ID" ColumnName="PS_ID" />
+                <ScalarProperty Name="CenaPDV" ColumnName="CenaPDV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="MONTESINOModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Status_ID" ColumnName="Status_ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="jePredracun" ColumnName="jePredracun" />
+                <ScalarProperty Name="jeRacun" ColumnName="jeRacun" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjekats">
+            <EntityTypeMapping TypeName="MONTESINOModel.Subjekat">
+              <MappingFragment StoreEntitySet="Subjekat">
+                <ScalarProperty Name="Subjekat_ID" ColumnName="Subjekat_ID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Naziv2" ColumnName="Naziv2" />
+                <ScalarProperty Name="jeKupac" ColumnName="jeKupac" />
+                <ScalarProperty Name="jeDobavljac" ColumnName="jeDobavljac" />
+                <ScalarProperty Name="OIB" ColumnName="OIB" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+                <ScalarProperty Name="Posta_ID" ColumnName="Posta_ID" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Drzava_ID" ColumnName="Drzava_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Valutas">
+            <EntityTypeMapping TypeName="MONTESINOModel.Valuta">
+              <MappingFragment StoreEntitySet="Valuta">
+                <ScalarProperty Name="Valuta_ID" ColumnName="Valuta_ID" />
+                <ScalarProperty Name="Oznaka" ColumnName="Oznaka" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

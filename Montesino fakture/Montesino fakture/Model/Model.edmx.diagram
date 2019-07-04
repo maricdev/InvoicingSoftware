@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="566a1bac96314e6a88ce22ddda54c19f" Name="Diagram1" ZoomLevel="96">
+        <EntityTypeShape EntityType="MONTESINOModel.Artikal" Width="1.5" PointX="3" PointY="32" IsExpanded="true" />
+        <EntityTypeShape EntityType="MONTESINOModel.Drzava" Width="1.5" PointX="1.5" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MONTESINOModel.JM" Width="1.5" PointX="0.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MONTESINOModel.NP" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MONTESINOModel.OdgovorneOsobe" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MONTESINOModel.Podesavanje" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MONTESINOModel.Porez" Width="1.5" PointX="0.75" PointY="34" IsExpanded="true" />
+        <EntityTypeShape EntityType="MONTESINOModel.Posta" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MONTESINOModel.Predracun" Width="1.5" PointX="6" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MONTESINOModel.PredracunStavke" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MONTESINOModel.Promet" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MONTESINOModel.PrometStavke" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MONTESINOModel.Status" Width="1.5" PointX="0.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MONTESINOModel.Subjekat" Width="1.5" PointX="0.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="MONTESINOModel.Valuta" Width="1.5" PointX="0.75" PointY="27.25" IsExpanded="true" />
+        <AssociationConnector Association="MONTESINOModel.FK_Artikal_JM" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Artikal_Porez" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_PredracunStavke_Artikal" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_PrometStavke_Artikal" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Posta_Drzava" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Subjekat_Drzava" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_PredracunStavke_JM" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_PrometStavke_JM" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Predracun_NP" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Promet_NP" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Podesavanje_OdgovorneOsobe" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Predracun_OdgovorneOsobe" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Promet_OdgovorneOsobe" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Podesavanje_Subjekat" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Podesavanje_Valuta" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_PredracunStavke_Porez" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_PrometStavke_Porez" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Predracun_Posta" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Promet_Posta" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Subjekat_PB" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Predracun_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Predracun_Subjekat" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Predracun_Subjekat1" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Predracun_Valuta" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_PredracunStavke_Predracun" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Promet_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Promet_Subjekat" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Promet_Subjekat1" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_Promet_Valuta" ManuallyRouted="false" />
+        <AssociationConnector Association="MONTESINOModel.FK_PrometStavke_Promet" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
