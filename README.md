@@ -1,2 +1,2 @@
 # InvoicingSoftware
- Program za fakutirsanje i reporting (FastReport.NET)
+Software for creating pre-invoices and invoices. (FastReport.NET)
